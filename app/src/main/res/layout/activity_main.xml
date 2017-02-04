@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,14 +10,166 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/background"
     tools:context="com.example.okanaydin.innocampus.MainActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"/>
-</RelativeLayout>
+        android:background="@color/colorPrimaryDark"
+        android:padding="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            app:srcCompat="@mipmap/icon1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:text="Hangi hizmete ihtiyacın var?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:id="@+id/textView2"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_marginTop="10dp"
+                android:hint="Örnek: Türkçe eğitmen"
+                android:id="@+id/editText"
+                android:background="@drawable/shape"
+                android:padding="13dp"
+                android:layout_below="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    //2.card
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:padding="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            app:srcCompat="@mipmap/icon2"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:text="Ne yapılmasını istiyorsun?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:id="@+id/textView3"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="textPersonName"
+                android:background="@drawable/shape"
+                android:padding="13dp"
+                android:ems="10"
+                android:layout_marginTop="10dp"
+                android:hint="Örnek: Türkçe eğitmen"
+                android:id="@+id/editText2"
+                android:layout_below="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"/>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    //3.Card
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:padding="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            app:srcCompat="@mipmap/icon3"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:text="Nerede ? "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:id="@+id/nerede"/>
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/spinner"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:id="@+id/spinner2"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:text="Gönder"
+        android:id="@+id/btnGonder"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/btn"/>
+</LinearLayout>
