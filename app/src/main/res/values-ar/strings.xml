@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Socialcall</string>
+
+    <string name="email">البريد الإلكتروني</string>
+    <string name="Parola">كلمه السر</string>
+    <string name="cikisyap">الخروج</string>
+    <string name="kullanicisil">إزالة حساب</string>
+    <string name="girisyap">تسجيل الدخول</string>
+    <string name="uyeol">تسجيل</string>
+    <string name="sifremiunuttum">هل نسيت كلمة المرور</string>
+    <string name="yenisifre">إرسال رابط كلمة سر جديدة</string>
+    <string name="uyemisin">لدي حساب بالفعل</string>
+    <string name="afadid">AFAD معرف</string>
+</resources>

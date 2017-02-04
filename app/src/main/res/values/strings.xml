@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InnoCampus</string>
+    <string name="app_name">Socialcall</string>
 
     <string name="email">Email</string>
     <string name="Parola">Parola</string>
@@ -7,7 +7,9 @@
     <string name="kullanicisil">Kullanıcıyı Sil</string>
     <string name="girisyap">Giriş Yap</string>
     <string name="uyeol">Üye Ol</string>
-    <string name="unuttum">Şifremi Unuttum</string>
-
+    <string name="sifremiunuttum">Şifremi Unuttum</string>
+    <string name="yenisifre">Yeni Parola Bağlantısını Gönder</string>
+    <string name="uyemisin">Zaten Üye Misin ?</string>
+    <string name="afadid">AFAD ID</string>
 
 </resources>

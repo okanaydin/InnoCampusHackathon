@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">Socialcall</string>
+
+    <string name="email">Email</string>
+    <string name="Parola">Password</string>
+    <string name="cikisyap">Logout Yap</string>
+    <string name="kullanicisil">Remove User</string>
+    <string name="girisyap">Login</string>
+    <string name="uyeol">Register</string>
+    <string name="sifremiunuttum">Forgot Password</string>
+    <string name="yenisifre">Send New Password Link</string>
+    <string name="uyemisin">I Already Have Account</string>
+    <string name="afadid">AFAD ID</string>
+</resources>
