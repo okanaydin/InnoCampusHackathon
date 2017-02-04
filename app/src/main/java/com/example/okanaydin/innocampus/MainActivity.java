@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,10 +24,22 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> dataAdapterForIller;
     private ArrayAdapter<String> dataAdapterForIlceler;
 
+    private TextView textID;
+    private EditText etHizmet, etMesaj;
+    private Button btnGonder;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        etHizmet=(EditText)findViewById(R.id.etHizmet);
+        etMesaj=(EditText)findViewById(R.id.etMesaj);
+        btnGonder=(Button)findViewById(R.id.btnGonder);
+        textID=(TextView)findViewById(R.id.textID);
+
+        textID.setText(getIntent().getExtras().getString("id"));
 
         //xml kısmında hazırladığımğız spinnerları burda tanımladıklarımızla eşleştiriyoruz.
         spinnerIller = (Spinner) findViewById(R.id.spinner);
@@ -75,5 +90,17 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
+
+        btnGonder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(getApplicationContext(), etHizmet.getText().toString() + " " + etMesaj.getText().toString(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
 }

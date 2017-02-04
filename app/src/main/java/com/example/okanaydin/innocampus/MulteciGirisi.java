@@ -13,14 +13,22 @@ public class MulteciGirisi extends AppCompatActivity {
 
     private Button btnMulteci, btnDestekOl;
     private EditText et_id;
+    // private EditText et_sifre;
+
+    //private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multeci_girisi);
 
+      //  auth=FirebaseAuth.getInstance();
+
         btnMulteci=(Button)findViewById(R.id.btnMulteci);
         btnDestekOl=(Button)findViewById(R.id.btnDestekOl);
         et_id=(EditText)findViewById(R.id.et_id);
+//        et_sifre=(EditText)findViewById(R.id.et_multeci_password);
+
 
 
         btnMulteci.setOnClickListener(new View.OnClickListener() {
@@ -39,11 +47,46 @@ public class MulteciGirisi extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Id'niz en az 11 haneden oluşmalıdır..",Toast.LENGTH_LONG).show();
                     return;
                 }
+                //ID gönder
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("id", et_id.getText().toString());
 
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+
+/*
+                String email2=et_id.getText().toString();
+                String parola2=et_sifre.getText().toString();
+
+                //FirebaseAuth ile email,parola parametrelerini kullanarak yeni bir kullanıcı oluşturuyoruz.
+                auth.createUserWithEmailAndPassword(email2,parola2)
+                        .addOnCompleteListener(MulteciGirisi.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                                //İşlem başarısız olursa kullanıcıya bir Toast mesajıyla bildiriyoruz.
+                                if (!task.isSuccessful()) {
+
+                                    Toast.makeText(getApplicationContext(), "Yetkilendirme Hatası", Toast.LENGTH_SHORT).show();
+                                }
+
+                                //İşlem başarılı ise  MainActivity e yönlendiriyoruz.
+                                else {
+                                    Toast.makeText(getApplicationContext(),"Tebrikler",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    finish();
+                                }
+
+                            }
+                        });
+*/
+
+                startActivity(intent);
+
 
             }
         });
+
 
 
 

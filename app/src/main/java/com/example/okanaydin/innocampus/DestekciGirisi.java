@@ -68,7 +68,7 @@ public class DestekciGirisi extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(),Main2Activity.class));
                                 }
                                 else {
                                     Toast.makeText(getApplicationContext(),"Tekrar Deneyiniz..",Toast.LENGTH_SHORT).show();
