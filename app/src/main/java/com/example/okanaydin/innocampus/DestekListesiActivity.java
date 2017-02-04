@@ -63,7 +63,7 @@ public class DestekListesiActivity extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(),post_key,Toast.LENGTH_SHORT).show();
 
                         Intent destekFormIntent=new Intent(getApplicationContext(),DestekFormActivity.class);
-                        destekFormIntent.putExtra("RefugeeID ", post_key);
+                        destekFormIntent.putExtra("RefugeeID", post_key.toString());
                         startActivity(destekFormIntent);
 
                     }

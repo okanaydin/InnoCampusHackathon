@@ -19,11 +19,12 @@ import com.squareup.picasso.Picasso;
 public class DestekFormActivity extends AppCompatActivity {
 
      private String mPost_key = null ;
-    private DatabaseReference mDatabase2;
+     private DatabaseReference mDatabase2;
 
     private ImageView mDestekFormImage;
     private TextView mDestekFormTitle;
     private TextView mDestekFormDesc;
+    private TextView cardID;
 
      FirebaseAuth mAuth;
 
@@ -39,15 +40,19 @@ public class DestekFormActivity extends AppCompatActivity {
 
        mAuth=FirebaseAuth.getInstance();
 
-        mPost_key = getIntent().getExtras().getString("blog_id");
+        mPost_key = getIntent().getExtras().getString("RefugeeID");
 
         mDestekFormImage = (ImageView) findViewById(R.id.destekFormGorsel);
         mDestekFormTitle = (TextView) findViewById(R.id.destekFormTitle);
         mDestekFormDesc = (TextView) findViewById(R.id.destekFormDesc);
+        cardID=(TextView)findViewById(R.id.cardID);
 
         mDestekFormBtn =(Button) findViewById(R.id.destekFormGonderBtn);
 
 
+        cardID.setText(getIntent().getExtras().getString("RefugeeID"));
+
+// /*
         mDatabase2.child(mPost_key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -65,10 +70,6 @@ public class DestekFormActivity extends AppCompatActivity {
                 Picasso.with(DestekFormActivity.this).load(post_image).into(mDestekFormImage);
 
 
-                if (mAuth.getCurrentUser().getUid() == post_uid){
-                    mDestekFormBtn.setVisibility(View.VISIBLE);
-                }
-
             }
 
 
@@ -78,5 +79,17 @@ public class DestekFormActivity extends AppCompatActivity {
 
             }
         });
+
+     //   */
+        mDestekFormBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+
     }
 }
