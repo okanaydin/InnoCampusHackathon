@@ -11,4 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.okanaydin.innocampus.Main2Activity">
 
+
+
+
 </RelativeLayout>

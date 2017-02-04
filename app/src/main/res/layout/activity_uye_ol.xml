@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sign_up"
@@ -9,8 +9,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     android:background="@color/background"
-    tools:context="com.example.okanaydin.innocampus.UyeOl">
+    tools:context="com.example.okanaydin.innocampus.UyeOl"
+    android:weightSum="1">
 
     <EditText
         android:layout_width="match_parent"
@@ -20,6 +22,7 @@
         android:background="@drawable/shape"
         android:hint="@string/email"
         android:id="@+id/uyeEmail"
+        android:layout_gravity="center"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -31,6 +34,7 @@
         android:background="@drawable/shape"
         android:id="@+id/uyeParola"
         android:hint="Password"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/uyeEmail"
         android:layout_alignParentStart="true" />
@@ -45,6 +49,7 @@
         android:textColor="@color/white"
         android:id="@+id/yeniUyeButton"
         android:textSize="18sp"
+        android:layout_gravity="center"
         android:background="@drawable/btn"
         android:layout_below="@+id/uyeParola"
         android:layout_centerHorizontal="true"
@@ -57,6 +62,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
+        android:layout_gravity="center"
         android:id="@+id/uyeGirisButton"
         android:background="@drawable/btn"
         android:textSize="18sp"
@@ -66,4 +72,5 @@
         android:layout_marginTop="30dp" />
 
 
-</RelativeLayout>
+
+</LinearLayout>
