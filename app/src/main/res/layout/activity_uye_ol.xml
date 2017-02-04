@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
+    tools:context="com.example.okanaydin.innocampus.UyeOl">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:background="@drawable/shape"
+        android:hint="@string/email"
+        android:id="@+id/uyeEmail"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:padding="10dp"
+        android:background="@drawable/shape"
+        android:id="@+id/uyeParola"
+        android:hint="Password"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/uyeEmail"
+        android:layout_alignParentStart="true" />
+
+
+
+
+    <Button
+        android:text="Üye Ol!"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textColor="@color/white"
+        android:id="@+id/yeniUyeButton"
+        android:textSize="18sp"
+        android:background="@drawable/btn"
+        android:layout_below="@+id/uyeParola"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
+
+
+
+    <Button
+        android:text="Zaten üye misin?"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:id="@+id/uyeGirisButton"
+        android:background="@drawable/btn"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/yeniUyeButton"
+        android:layout_alignStart="@+id/yeniUyeButton"
+        android:layout_marginTop="30dp" />
+
+
+</RelativeLayout>

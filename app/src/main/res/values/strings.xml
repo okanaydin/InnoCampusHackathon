@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">InnoCampus</string>
+
+    <string name="email">Email</string>
+    <string name="Parola">Parola</string>
+    <string name="cikisyap">Çıkış Yap</string>
+    <string name="kullanicisil">Kullanıcıyı Sil</string>
+
 </resources>
