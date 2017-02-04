@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DestekciGirisi extends AppCompatActivity {
-
+// dummy
     private EditText etEmail, etParola;
     private Button btnDestekciGirisi, btnUyeOl;
     private TextView textForgot;
