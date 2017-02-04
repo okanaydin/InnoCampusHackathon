@@ -5,6 +5,9 @@
     <string name="Parola">Parola</string>
     <string name="cikisyap">Çıkış Yap</string>
     <string name="kullanicisil">Kullanıcıyı Sil</string>
+    <string name="girisyap">Giriş Yap</string>
+    <string name="uyeol">Üye Ol</string>
+    <string name="unuttum">Şifremi Unuttum</string>
 
 
 </resources>
