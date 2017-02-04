@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".DestekListesiActivity">
         </activity>
+        <activity android:name=".DestekFormActivity">
+        </activity>
     </application>
 
 </manifest>

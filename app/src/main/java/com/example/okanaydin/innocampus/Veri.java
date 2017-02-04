@@ -6,38 +6,38 @@ package com.example.okanaydin.innocampus;
 
 public class Veri {
 
-    private String title, desc, image;
+    public String Title, Description, Image;
 
     public Veri(){
 
     }
-    public Veri(String title, String desc, String image) {
-        this.title = title;
-        this.desc = desc;
-        this.image = image;
-    }
+//    public Veri(String title, String description, String image) {
+//        this.Title = title;
+//        this.Description = description;
+//        this.Image = image;
+//    }
 
-    public String getImage() {
-        return image;
-    }
+//    public String getImage() {
+//        return this.Image;
+//    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+//    public void setImage(String image) {
+//        this.Image = image;
+//    }
 
-    public String getDesc() {
-        return desc;
-    }
+//    public String getDescription() {
+//        return this.Description;
+//    }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+//    public void setDesc(String description) {
+//        this.Description = description;
+//    }
+//
+//    public String getTitle() {
+//        return this.Title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.Title = title;
+//    }
 }

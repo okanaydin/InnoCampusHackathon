@@ -133,16 +133,18 @@ public class RefugeeFormActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                //Seçilen il ve ilçeyi ekranda gösteriyoruz.
-                Toast.makeText(getBaseContext(), ""+spinnerIller.getSelectedItem().toString()+" - "+parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+
+                // /Seçilen il ve ilçeyi Database'e kayıt ediyoruz.   *******
+
+                //String location = spinnerIller.getSelectedItem().toString() +"-"+parent.getSelectedItem().toString().trim();
+                Toast.makeText(getBaseContext(), " "+spinnerIller.getSelectedItem().toString()+" - "+parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
-            }
+             }
         });
 
 
-        //Database Post islemini tetikleme
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +170,7 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
 
 
+        //New Post
         if (!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && mimageUri != null){
 
             StorageReference filePath = mStogare.child("Images").child(mimageUri.getLastPathSegment());
@@ -182,8 +185,10 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
                     newPost.child("Title").setValue(title_val);
                     newPost.child("Description").setValue(desc_val);
-                    newPost.child("Refugee ID").setValue(refugee_id);
+                    newPost.child("RefugeeID").setValue(refugee_id);
                     newPost.child("Image").setValue(downloadUrl.toString());
+                    // newPost.child("Location").setValue(location);
+
 
                     mProgress.dismiss();
 
