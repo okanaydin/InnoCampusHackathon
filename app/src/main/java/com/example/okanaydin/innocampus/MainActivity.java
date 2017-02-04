@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> dataAdapterForIller;
     private ArrayAdapter<String> dataAdapterForIlceler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
