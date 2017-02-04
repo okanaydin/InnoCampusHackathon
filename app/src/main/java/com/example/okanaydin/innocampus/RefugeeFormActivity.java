@@ -64,7 +64,7 @@ public class RefugeeFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_refugee_form);
 
         mStogare = FirebaseStorage.getInstance().getReference();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("RefugeeNeeds");
 
         mPostTitle=(EditText)findViewById(R.id.titleField);
         mPostDesc=(EditText)findViewById(R.id.descField);
@@ -164,10 +164,13 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
         final String title_val = mPostTitle.getText().toString().trim();
         final String desc_val= mPostDesc.getText().toString().trim();
+        final String refugee_id = textID.getText().toString().trim();
+
+
 
         if (!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && mimageUri != null){
 
-            StorageReference filePath = mStogare.child("Görseller").child(mimageUri.getLastPathSegment());
+            StorageReference filePath = mStogare.child("Images").child(mimageUri.getLastPathSegment());
 
             filePath.putFile(mimageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -177,9 +180,10 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
                     DatabaseReference newPost = mDatabase.push();
 
-                    newPost.child("Hangi Hizmete İhtiyacı Var ? ").setValue(title_val);
-                    newPost.child("Ne Yapılmasını İstiyor ? ").setValue(desc_val);
-                    newPost.child("Görsel").setValue(downloadUrl.toString());
+                    newPost.child("Title").setValue(title_val);
+                    newPost.child("Description").setValue(desc_val);
+                    newPost.child("Refugee ID").setValue(refugee_id);
+                    newPost.child("Image").setValue(downloadUrl.toString());
 
                     mProgress.dismiss();
 
