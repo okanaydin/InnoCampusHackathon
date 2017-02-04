@@ -18,11 +18,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DestekciGirisi extends AppCompatActivity {
-// dummy
+
     private EditText etEmail, etParola;
     private Button btnDestekciGirisi, btnUyeOl;
     private TextView textForgot;
     private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class DestekciGirisi extends AppCompatActivity {
                 String email = etEmail.getText().toString();
                 final String parola = etParola.getText().toString();
 
+                final String user_id=" ";
+
                 //Email girilmemiş ise kullanıcıyı uyarıyoruz.
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Lütfen emailinizi giriniz", Toast.LENGTH_SHORT).show();
@@ -68,6 +71,10 @@ public class DestekciGirisi extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+
+                                    //Kullanici id çekme
+                                     task.getResult().getUser().getUid();
+
                                     startActivity(new Intent(getApplicationContext(),DestekListesiActivity.class));
                                 }
                                 else {
