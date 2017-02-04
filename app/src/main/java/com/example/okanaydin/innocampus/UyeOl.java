@@ -68,10 +68,10 @@ public class UyeOl extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Yetkilendirme Hatası", Toast.LENGTH_SHORT).show();
                                 }
 
-                                //İşlem başarılı ise  MainActivity e yönlendiriyoruz.
+                                //İşlem başarılı ise  RefugeeFormActivity e yönlendiriyoruz.
                                 else {
                                     Toast.makeText(getApplicationContext(),"Tebrikler",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), DestekListesiActivity.class));
                                     finish();
                                 }
 

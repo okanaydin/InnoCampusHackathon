@@ -42,7 +42,7 @@ public class MulteciGirisi extends AppCompatActivity {
                     return;
                 }
                 //ID gönder
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),RefugeeFormActivity.class);
                 intent.putExtra("id", et_id.getText().toString());
 
                 startActivity(intent);

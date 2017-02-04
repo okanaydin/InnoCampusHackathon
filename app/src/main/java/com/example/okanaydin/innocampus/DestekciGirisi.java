@@ -40,7 +40,7 @@ public class DestekciGirisi extends AppCompatActivity {
 
         //Geçerli bir yetkilendirme olup olmadığını kontrol ediyoruz.
         if(auth.getCurrentUser() == null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),RefugeeFormActivity.class));
         }
 
         btnDestekciGirisi.setOnClickListener(new View.OnClickListener() {
@@ -62,13 +62,13 @@ public class DestekciGirisi extends AppCompatActivity {
                 }
 
                 //Firebase üzerinde kullanıcı doğrulamasını başlatıyoruz
-                //Eğer giriş başarılı olursa task.isSuccessful true dönecek ve MainActivity e geçilecek
+                //Eğer giriş başarılı olursa task.isSuccessful true dönecek ve RefugeeFormActivity e geçilecek
                 auth.signInWithEmailAndPassword(email, parola)
                         .addOnCompleteListener(DestekciGirisi.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(),Main2Activity.class));
+                                    startActivity(new Intent(getApplicationContext(),DestekListesiActivity.class));
                                 }
                                 else {
                                     Toast.makeText(getApplicationContext(),"Tekrar Deneyiniz..",Toast.LENGTH_SHORT).show();

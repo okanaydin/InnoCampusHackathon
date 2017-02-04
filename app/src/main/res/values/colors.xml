@@ -8,4 +8,7 @@
     <color name="yellow">#ffcb2b</color>
     <color name="white">#FFFFFF</color>
     <color name="button">#cc1d1d</color>
+
+    <color name="grayColor">#c2c2c2</color>
+
 </resources>
