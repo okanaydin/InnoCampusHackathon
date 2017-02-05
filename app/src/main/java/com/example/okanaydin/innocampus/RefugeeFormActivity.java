@@ -115,7 +115,7 @@ public class RefugeeFormActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
 
         //Kullanıcı ID cekme
-        textID.setText(getIntent().getExtras().getString("id"));
+        //textID.setText(getIntent().getExtras().getString("id"));
 
         //xml kısmında hazırladığımğız spinnerları burda tanımladıklarımızla eşleştiriyoruz.
         spinnerIller = (Spinner) findViewById(R.id.spinner);
@@ -155,6 +155,7 @@ public class RefugeeFormActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(RefugeeFormActivity.this, "Bir hata olustu.", Toast.LENGTH_SHORT).show();
+                        // error.printStackTrace();
                     }
                 }
         );
@@ -265,8 +266,6 @@ public class RefugeeFormActivity extends AppCompatActivity {
                 }
             });
         }
-
-
 
     }
 

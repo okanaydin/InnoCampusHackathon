@@ -10,6 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.example.okanaydin.innocampus.RefugeeFormActivity">
 
@@ -40,12 +41,6 @@
         android:background="@drawable/card2"
         android:padding="15dp"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:srcCompat="@mipmap/icon1"/>
 
 
         <LinearLayout
@@ -87,13 +82,6 @@
         android:background="@drawable/card2"
         android:padding="15dp"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:srcCompat="@mipmap/icon2"/>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,26 +127,11 @@
         android:padding="15dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:srcCompat="@mipmap/icon3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
-            <TextView
-                android:text="Nerede ? "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:textColor="@color/white"
-                android:textSize="18sp"/>
 
 
             <Spinner
@@ -187,7 +160,7 @@
 
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/add_btn2"
             android:scaleType="centerCrop"
             android:layout_alignParentTop="true"

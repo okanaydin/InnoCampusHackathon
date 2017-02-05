@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -113,7 +115,7 @@ public class DestekFormActivity extends AppCompatActivity {
         mDestekFormBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.v("log", "Clicked");
                 startPosting();
 
             }
@@ -123,7 +125,7 @@ public class DestekFormActivity extends AppCompatActivity {
 
 
         private void startPosting() {
-
+            Log.v("Log", "startPosting");
             //mProgress.setMessage("Talebiniz Gönderiliyor ...");
             //mProgress.show();
 
@@ -133,21 +135,23 @@ public class DestekFormActivity extends AppCompatActivity {
             final String refugee_id = cardID.getText().toString().trim();
 
 
-         //   mStogare = FirebaseStorage.getInstance().getReference();
-           // mDatabase = FirebaseDatabase.getInstance().getReference().child("UserSupports");
+            mStogare = FirebaseStorage.getInstance().getReference();
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("UserSupports");
 
             //New Post
             if (!TextUtils.isEmpty(mUserPhone) && !TextUtils.isEmpty(mUserName) && !TextUtils.isEmpty(mUserAnswer) && mimageUri != null ){
-
+                Log.v("Log", "in if");
                 StorageReference filePath = mStogare.child("Images").child(mimageUri.getLastPathSegment());
 
                 filePath.putFile(mimageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                        Log.v("Log", "Got image");
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
                         DatabaseReference newPost = mDatabase.push();
+
 
                         newPost.child("UserName").setValue(mUserName);
                         newPost.child("UserPhone").setValue(mUserPhone);

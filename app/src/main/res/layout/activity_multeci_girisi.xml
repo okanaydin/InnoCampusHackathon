@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
+        android:textColor="@color/cardview_dark_background"
         android:maxLength="11"
         android:layout_marginTop="3dp"
         android:padding="13dp"
@@ -44,7 +45,7 @@
 
 
     <Button
-        android:text="Giriş Yap"
+        android:text="@string/girisyap"
         android:id="@+id/btnMulteci"
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -59,7 +60,7 @@
 
 
     <Button
-        android:text="DestekOl"
+        android:text="@string/destekol"
         android:id="@+id/btnDestekOl"
         android:layout_width="250dp"
         android:layout_height="50dp"

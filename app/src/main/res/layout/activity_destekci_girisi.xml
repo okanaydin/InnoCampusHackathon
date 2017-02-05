@@ -42,13 +42,13 @@
         android:background="@drawable/shape"
         android:layout_marginTop="10dp"
         android:id="@+id/etParola"
-        android:hint="Parola" />
+        android:hint="@string/Parola" />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Şifremi unuttum"
+        android:text="@string/sifremiunuttum"
         android:id="@+id/textForgot"
         android:layout_gravity="left"
         android:textSize="16sp"
@@ -57,7 +57,7 @@
 
 
     <Button
-            android:text="Giriş Yap"
+            android:text="@string/girisyap"
             android:id="@+id/btnDestekciGirisi"
             android:layout_width="250dp"
             android:layout_height="50dp"
@@ -71,7 +71,7 @@
 
 
     <Button
-        android:text="Üye Ol"
+        android:text="@string/uyeol"
         android:id="@+id/btnUyeOl"
         android:layout_width="250dp"
         android:layout_height="50dp"
