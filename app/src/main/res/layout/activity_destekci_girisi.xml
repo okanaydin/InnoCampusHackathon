@@ -27,7 +27,7 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:layout_marginTop="10dp"
-        android:padding="13dp"
+        android:padding="15dp"
         android:background="@drawable/shape"
         android:hint="@string/email"
         android:id="@+id/etEmail" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:padding="13dp"
+        android:padding="15dp"
         android:background="@drawable/shape"
         android:layout_marginTop="10dp"
         android:id="@+id/etParola"
@@ -53,17 +53,14 @@
         android:layout_gravity="left"
         android:textSize="16sp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/cardview_dark_background"/>
 
 
-
-
-
-        <Button
+    <Button
             android:text="Giriş Yap"
             android:id="@+id/btnDestekciGirisi"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="45dp"
             android:layout_marginLeft="10dp"
@@ -76,8 +73,8 @@
     <Button
         android:text="Üye Ol"
         android:id="@+id/btnUyeOl"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"

@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".ForgetPassword">
         </activity>
-        <activity android:name=".MulteciGirisi">
+        <activity android:name=".MulteciGirisi" android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
