@@ -16,6 +16,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,19 +31,34 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RefugeeFormActivity extends AppCompatActivity {
 
-    //Spinner
-    private String[] iller={"İSTANBUL","ANKARA"};
-    private String[] ilceler0={"ADALAR","ARNAVUTKÖY","ATAŞEHİR","AVCILAR","BAğCILAR","BAHÇELİEVLER","BAKIRKÖY","BAŞAKŞEHİR","BAYRAMPAŞA","BEŞİKTAŞ","BEYLİKDÜZÜ","BEYOĞLU","BÜYÜKÇEKMECE","BEYKOZ","ÇATALCA","ÇEKMEKÖY","ESENLER","ESENYURT","EYÜP","FATİH","GAZİOSMANPAŞA","GÜNGÖREN","KADIKÖY","KAĞITHANE","KARTAL","KÜÇÜKÇEKMECE","MALTEPE","PENDİK","SANCAKTEPE","SARIYER","SİLİVRİ","SULTANBEYLİ","SULTANGAZİ","ŞİLE","ŞİŞLİ","TUZLA","ÜSKÜDAR","ÜMRANİYE","ZEYTİNBURNU"};
-    private String[] ilceler1={"AKYURT","ALTINDAĞ","AYAŞ","BALA","BEYPAZARI","ÇAMLIDERE","ÇANKAYA","ÇUBUK","ELMADAĞ","ETİMESGUT","EVREN","GÖLBAŞI","GÜDÜL","HAYMANA","KALECİK","KAZAN","KEÇİÖREN","KIZILCAHAMAM","MAMAK","NALLIHAN","POLATLI","PURSAKLAR","SİNCAN","ŞEREFLİKOÇHİSAR","YENİMAHALLE"};
+    //Istek Kuyrugu
+    RequestQueue kuyruk;
+
+    //Il Ilce ArrayList
+    private ArrayList<String> ilListesi = new ArrayList<>();
+    private ArrayList<String> ilceListesi = new ArrayList<>();
+
 
     //Spinner Adapter
     private Spinner spinnerIller;
     private Spinner spinnerIlceler;
     private ArrayAdapter<String> dataAdapterForIller;
     private ArrayAdapter<String> dataAdapterForIlceler;
+
+    //Hangi il konumunda oldugu
+
+    private int indis;
+
 
     //Kullanici ID
     private TextView textID;
@@ -62,6 +85,7 @@ public class RefugeeFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refugee_form);
+        kuyruk= Volley.newRequestQueue(getApplicationContext());
 
         mStogare = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("RefugeeNeeds");
@@ -96,8 +120,8 @@ public class RefugeeFormActivity extends AppCompatActivity {
         spinnerIlceler = (Spinner) findViewById(R.id.spinner2);
 
         //Spinner'lar için adapterleri hazırlıyoruz.
-        dataAdapterForIller = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, iller);
-        dataAdapterForIlceler = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,ilceler0);
+        dataAdapterForIller = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ilListesi);
+        dataAdapterForIlceler = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,ilceListesi);
 
         //Listelenecek verilerin görünümünü belirliyoruz.
         dataAdapterForIller.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,41 +131,86 @@ public class RefugeeFormActivity extends AppCompatActivity {
         spinnerIller.setAdapter(dataAdapterForIller);
         spinnerIlceler.setAdapter(dataAdapterForIlceler);
 
-        // Listelerden bir eleman seçildiğinde yapılacakları tanımlıyoruz.
+        // Listelerden bir eleman seçildiginde yapilacaklari tanimliyoruz.
+        JsonArrayRequest istek = new JsonArrayRequest(
+                "http://yazilim24.com/android/iller.json",
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject nesne = response.getJSONObject(i);
+                                String il = nesne.getString("il");
+                                ilListesi.add(il);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        dataAdapterForIller.notifyDataSetChanged();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RefugeeFormActivity.this, "Bir hata olustu.", Toast.LENGTH_SHORT).show();
+                        // error.printStackTrace();
+                    }
+                }
+        );
+
+        kuyruk.add(istek);
+
+
         spinnerIller.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                //Hangi il seçilmişse onun ilçeleri adapter'e ekleniyor.
-                if(parent.getSelectedItem().toString().equals(iller[0]))
-                    dataAdapterForIlceler = new ArrayAdapter<String>(RefugeeFormActivity.this, android.R.layout.simple_spinner_item,ilceler0);
-                else if(parent.getSelectedItem().toString().equals(iller[1]))
-                    dataAdapterForIlceler = new ArrayAdapter<String>(RefugeeFormActivity.this, android.R.layout.simple_spinner_item,ilceler1);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                indis = i;
 
-                dataAdapterForIlceler.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerIlceler.setAdapter(dataAdapterForIlceler);
+                Response.Listener<String> listener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONArray dizi = new JSONArray(response);
+                            ilceListesi.clear();
+                            for (int i = 0; i < dizi.length(); i++) {
+
+                                String ilce = dizi.getString(i);
+                                ilceListesi.add(ilce);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        dataAdapterForIlceler.notifyDataSetChanged();
+                    }
+                };
+
+                Response.ErrorListener errorListener = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RefugeeFormActivity.this, "Bir hata olustu.", Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                };
+                // JsonArrayRequest parametrelerini gönderemiyor.
+                StringRequest istek = new StringRequest(
+                        Request.Method.POST,
+                        " http://yazilim24.com/android/ilce.php", listener, errorListener) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> parametreler = new HashMap<String, String>();
+                        parametreler.put("il", ilListesi.get(indis));
+                        return parametreler;
+                    }
+                };
+                kuyruk.add(istek);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
-        });
-
-        spinnerIlceler.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-
-                // /Seçilen il ve ilçeyi Database'e kayıt ediyoruz.   *******
-
-                //String location = spinnerIller.getSelectedItem().toString() +"-"+parent.getSelectedItem().toString().trim();
-                Toast.makeText(getBaseContext(), " "+spinnerIller.getSelectedItem().toString()+" - "+parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-             }
         });
 
 
