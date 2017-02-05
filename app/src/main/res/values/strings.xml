@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Socialcall</string>
+    <string name="app_name">SocialCall</string>
 
     <string name="email">Email</string>
     <string name="Parola">Parola</string>
@@ -11,5 +11,15 @@
     <string name="yenisifre">Yeni Parola Bağlantısını Gönder</string>
     <string name="uyemisin">Zaten Üye Misin ?</string>
     <string name="afadid">AFAD ID</string>
+    <string name="yanıt">Yanıt Ver : </string>
+    <string name="gonder">Gönder </string>
+    <string name="ihtiyac">Hangi hizmete ihtiyacın var ? </string>
+    <string name="ornek">Örnek : Türkçe eğitmen </string>
+    <string name="neistiyorsun">Ne yapılmasını istiyorsun ? </string>
+    <string name="konum">Nerede ? </string>
+    <string name="destekol">Destek ol </string>
+    <string name="adsoyad">Ad Soyad</string>
+    <string name="telefonNumara">Telefon Numarası</string>
+
 
 </resources>

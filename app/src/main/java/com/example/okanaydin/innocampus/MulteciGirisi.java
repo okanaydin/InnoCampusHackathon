@@ -85,4 +85,7 @@ public class MulteciGirisi extends AppCompatActivity {
             }
         });
     }
+
 }
+
+

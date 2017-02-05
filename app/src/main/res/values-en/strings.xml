@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
 
     <string name="app_name">Socialcall</string>
 
-    <string name="email">Email</string>
+    <string name="Email">Email</string>
     <string name="Parola">Password</string>
     <string name="cikisyap">Logout Yap</string>
     <string name="kullanicisil">Remove User</string>
@@ -14,4 +13,12 @@
     <string name="yenisifre">Send New Password Link</string>
     <string name="uyemisin">I Already Have Account</string>
     <string name="afadid">AFAD ID</string>
+    <string name="yanıt">Answer </string>
+    <string name="gonder">Send </string>
+    <string name="ihtiyac">What do you need ? </string>
+    <string name="ornek">Example : Turkish teacher </string>
+    <string name="neistiyorsun">What do you want about that ? </string>
+    <string name="konum">Location </string>
+    <string name="destekol">Be support </string>
+
 </resources>

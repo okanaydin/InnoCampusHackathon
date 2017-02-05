@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Socialcall</string>
 
+
     <string name="email">البريد الإلكتروني</string>
     <string name="Parola">كلمه السر</string>
     <string name="cikisyap">الخروج</string>
@@ -12,4 +13,11 @@
     <string name="yenisifre">إرسال رابط كلمة سر جديدة</string>
     <string name="uyemisin">لدي حساب بالفعل</string>
     <string name="afadid">AFAD معرف</string>
+    <string name="yanıt">إجابة </string>
+    <string name="gonder">إرسال </string>
+    <string name="ihtiyac">ماذا تحتاج </string>
+    <string name="ornek">مثال: المعلم التركية</string>
+    <string name="neistiyorsun">ماذا تريد لذلك ? </string>
+    <string name="konum">موقعك </string>
+    <string name="destekol">يكون الدعم</string>
 </resources>

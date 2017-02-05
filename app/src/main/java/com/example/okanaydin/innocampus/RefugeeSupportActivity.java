@@ -3,11 +3,9 @@ package com.example.okanaydin.innocampus;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,66 +39,68 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RefugeeFormActivity extends AppCompatActivity {
+import static com.example.okanaydin.innocampus.R.id.textID;
+
+public class RefugeeSupportActivity extends AppCompatActivity {
 
     //Istek Kuyrugu
-    RequestQueue kuyruk;
+    RequestQueue kuyrukDestek;
 
     //Il Ilce ArrayList
-    private ArrayList<String> ilListesi = new ArrayList<>();
-    private ArrayList<String> ilceListesi = new ArrayList<>();
+    private ArrayList<String> ilListesiDestek = new ArrayList<>();
+    private ArrayList<String> ilceListesiDestek = new ArrayList<>();
 
 
     //Spinner Adapter
-    private Spinner spinnerIller;
-    private Spinner spinnerIlceler;
-    private ArrayAdapter<String> dataAdapterForIller;
-    private ArrayAdapter<String> dataAdapterForIlceler;
+    private Spinner spinnerIllerDestek;
+    private Spinner spinnerIlcelerDestek;
+    private ArrayAdapter<String> dataAdapterForIllerDestek;
+    private ArrayAdapter<String> dataAdapterForIlcelerDestek;
 
     //Hangi il konumunda oldugu
 
-    private int indis;
+    private int indisDestek;
 
 
     //Kullanici ID
-    private TextView textID;
+    private TextView textIDDestek;
 
     //Gorsel ekle
-    private ImageButton mselectImage;
+    private ImageButton mselectImageDestek;
 
     //Ihtiyac Belirtme
-    private EditText mPostTitle, mPostDesc;
+    private EditText mPostTitleDestek, mPostDescDestek;
 
     //Gonderme
-    private Button mSubmitBtn;
+    private Button mSubmitBtnDestek;
 
 
-    private Uri mimageUri = null ;
+    private Uri mimageUriDestek = null ;
 
     private static final int GALLERY_REQUEST = 1;
 
-    private StorageReference mStogare;
-    private ProgressDialog mProgress;
-    private DatabaseReference mDatabase;
+    private StorageReference mStogareDestek;
+    private ProgressDialog mProgressDestek;
+    private DatabaseReference mDatabaseDestek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refugee_form);
-        kuyruk= Volley.newRequestQueue(getApplicationContext());
+        kuyrukDestek= Volley.newRequestQueue(getApplicationContext());
 
-        mStogare = FirebaseStorage.getInstance().getReference();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("RefugeeNeeds");
+        mStogareDestek = FirebaseStorage.getInstance().getReference();
+        mDatabaseDestek = FirebaseDatabase.getInstance().getReference().child("RefugeeSupports");
 
-        mPostTitle=(EditText)findViewById(R.id.titleField);
-        mPostDesc=(EditText)findViewById(R.id.descField);
-        mSubmitBtn=(Button)findViewById(R.id.submitBtn);
-        textID=(TextView)findViewById(R.id.textID);
-        mselectImage=(ImageButton)findViewById(R.id.gorsel);
+        mPostTitleDestek=(EditText)findViewById(R.id.titleField);
+        mPostDescDestek=(EditText)findViewById(R.id.descField);
+        mSubmitBtnDestek=(Button)findViewById(R.id.submitBtn);
+        textIDDestek=(TextView)findViewById(textID);
+        mselectImageDestek=(ImageButton)findViewById(R.id.gorsel);
 
 
         //Galeri den gorsel secme
-        mselectImage.setOnClickListener(new View.OnClickListener() {
+        mselectImageDestek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -112,26 +112,26 @@ public class RefugeeFormActivity extends AppCompatActivity {
         });
 
 
-        mProgress = new ProgressDialog(this);
+        mProgressDestek = new ProgressDialog(this);
 
         //Kullanıcı ID cekme
-        textID.setText(getIntent().getExtras().getString("id"));
+//        textIDDestek.setText(getIntent().getExtras().getString("id"));
 
         //xml kısmında hazırladığımğız spinnerları burda tanımladıklarımızla eşleştiriyoruz.
-        spinnerIller = (Spinner) findViewById(R.id.spinner);
-        spinnerIlceler = (Spinner) findViewById(R.id.spinner2);
+        spinnerIllerDestek = (Spinner) findViewById(R.id.spinner);
+        spinnerIlcelerDestek = (Spinner) findViewById(R.id.spinner2);
 
         //Spinner'lar için adapterleri hazırlıyoruz.
-        dataAdapterForIller = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ilListesi);
-        dataAdapterForIlceler = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,ilceListesi);
+        dataAdapterForIllerDestek = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ilListesiDestek);
+        dataAdapterForIlcelerDestek = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,ilceListesiDestek);
 
         //Listelenecek verilerin görünümünü belirliyoruz.
-        dataAdapterForIller.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dataAdapterForIlceler.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapterForIllerDestek.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapterForIlcelerDestek.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //Hazırladğımız Adapter'leri Spinner'lara ekliyoruz.
-        spinnerIller.setAdapter(dataAdapterForIller);
-        spinnerIlceler.setAdapter(dataAdapterForIlceler);
+        spinnerIllerDestek.setAdapter(dataAdapterForIllerDestek);
+        spinnerIlcelerDestek.setAdapter(dataAdapterForIlcelerDestek);
 
         // Listelerden bir eleman seçildiginde yapilacaklari tanimliyoruz.
         JsonArrayRequest istek = new JsonArrayRequest(
@@ -143,29 +143,29 @@ public class RefugeeFormActivity extends AppCompatActivity {
                             try {
                                 JSONObject nesne = response.getJSONObject(i);
                                 String il = nesne.getString("il");
-                                ilListesi.add(il);
+                                ilListesiDestek.add(il);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        dataAdapterForIller.notifyDataSetChanged();
+                        dataAdapterForIllerDestek.notifyDataSetChanged();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RefugeeFormActivity.this, "Bir hata olustu.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Bir hata olustu.", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
 
-        kuyruk.add(istek);
+        kuyrukDestek.add(istek);
 
 
-        spinnerIller.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerIllerDestek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                indis = i;
+                indisDestek = i;
 
                 Response.Listener<String> listener = new Response.Listener<String>() {
                     @Override
@@ -173,24 +173,24 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
                         try {
                             JSONArray dizi = new JSONArray(response);
-                            ilceListesi.clear();
+                            ilceListesiDestek.clear();
                             for (int i = 0; i < dizi.length(); i++) {
 
                                 String ilce = dizi.getString(i);
-                                ilceListesi.add(ilce);
+                                ilceListesiDestek.add(ilce);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        dataAdapterForIlceler.notifyDataSetChanged();
+                        dataAdapterForIlcelerDestek.notifyDataSetChanged();
                     }
                 };
 
                 Response.ErrorListener errorListener = new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RefugeeFormActivity.this, "Bir hata olustu.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Bir hata olustu.", Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                     }
                 };
@@ -201,11 +201,11 @@ public class RefugeeFormActivity extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> parametreler = new HashMap<String, String>();
-                        parametreler.put("il", ilListesi.get(indis));
+                        parametreler.put("il", ilListesiDestek.get(indisDestek));
                         return parametreler;
                     }
                 };
-                kuyruk.add(istek);
+                kuyrukDestek.add(istek);
             }
 
             @Override
@@ -215,13 +215,13 @@ public class RefugeeFormActivity extends AppCompatActivity {
         });
 
 
-        mSubmitBtn.setOnClickListener(new View.OnClickListener() {
+        mSubmitBtnDestek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 startPosting();
 
-                Toast.makeText(getApplicationContext(), mPostTitle.getText().toString() + " " + mPostDesc.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), mPostTitleDestek.getText().toString() + " " + mPostDescDestek.getText().toString(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -231,36 +231,36 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
     private void startPosting() {
 
-        mProgress.setMessage("Talebiniz Gönderiliyor ...");
-        mProgress.show();
+        mProgressDestek.setMessage("Talebiniz Gönderiliyor ...");
+        mProgressDestek.show();
 
-        final String title_val = mPostTitle.getText().toString().trim();
-        final String desc_val= mPostDesc.getText().toString().trim();
-        final String refugee_id = textID.getText().toString().trim();
+        final String title_val = mPostTitleDestek.getText().toString().trim();
+        final String desc_val= mPostDescDestek.getText().toString().trim();
+       // final String refugee_id = textIDDestek.getText().toString().trim();
 
 
 
         //New Post
-        if (!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && mimageUri != null){
+        if (!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && mimageUriDestek != null){
 
-            StorageReference filePath = mStogare.child("Images").child(mimageUri.getLastPathSegment());
+            StorageReference filePath = mStogareDestek.child("ImagesDestek").child(mimageUriDestek.getLastPathSegment());
 
-            filePath.putFile(mimageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            filePath.putFile(mimageUriDestek).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-                    DatabaseReference newPost = mDatabase.push();
+                    DatabaseReference newPost = mDatabaseDestek.push();
 
                     newPost.child("Title").setValue(title_val);
                     newPost.child("Description").setValue(desc_val);
-                    newPost.child("RefugeeID").setValue(refugee_id);
+                  //  newPost.child("RefugeeID").setValue(refugee_id);
                     newPost.child("Image").setValue(downloadUrl.toString());
                     // newPost.child("Location").setValue(location);
 
 
-                    mProgress.dismiss();
+                    mProgressDestek.dismiss();
 
                 }
             });
@@ -276,27 +276,11 @@ public class RefugeeFormActivity extends AppCompatActivity {
 
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
 
-            mimageUri = data.getData();
-            mselectImage.setImageURI(mimageUri );
+            mimageUriDestek = data.getData();
+            mselectImageDestek.setImageURI(mimageUriDestek );
 
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.action_add){
-            startActivity(new Intent(getApplicationContext(), RefugeeSupportActivity.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

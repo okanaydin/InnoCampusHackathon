@@ -20,7 +20,7 @@
             android:layout_height="200dp"
             android:id="@+id/post_image"
             android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/add_btn"
+            app:srcCompat="@mipmap/add_btn2"
             android:adjustViewBounds="true"/>
 
         <TextView

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_refugee_support"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -11,41 +11,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.okanaydin.innocampus.RefugeeFormActivity">
+    tools:context="com.example.okanaydin.innocampus.RefugeeSupportActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kulanıcı ID'si: "/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:text=" "
-            android:id="@+id/textID"/>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0488d1"
         android:padding="15dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:srcCompat="@mipmap/icon1"/>
+        android:orientation="vertical">
 
 
         <LinearLayout
@@ -55,7 +29,7 @@
 
 
             <TextView
-                android:text="Hangi hizmete ihtiyacın var?"
+                android:text="Ne tür destek vermek istersiniz?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -69,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_marginTop="10dp"
-                android:hint="Örnek: Türkçe eğitmen"
-                android:id="@+id/titleField"
+                android:hint="Örnek: Arapca Egitim"
+                android:id="@+id/titleDestek"
                 android:background="@drawable/shape"
                 android:padding="13dp"
                 android:layout_below="@+id/textView2"
@@ -88,11 +62,6 @@
         android:padding="15dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:srcCompat="@mipmap/icon2"/>
 
 
         <LinearLayout
@@ -113,13 +82,13 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/shape"
                 android:padding="13dp"
                 android:ems="10"
                 android:layout_marginTop="10dp"
                 android:hint="Örnek: Türkçe eğitmen"
-                android:id="@+id/descField"
+                android:id="@+id/descDestek"
                 android:layout_below="@+id/textView2"
                 android:layout_alignStart="@+id/textView2"/>
 
@@ -139,11 +108,6 @@
         android:padding="15dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:srcCompat="@mipmap/icon3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,12 +129,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:id="@+id/spinner"/>
+                android:id="@+id/spinnerDestek"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:id="@+id/spinner2"/>
+                android:id="@+id/spinner2Destek"/>
 
         </LinearLayout>
 
@@ -191,7 +155,7 @@
             app:srcCompat="@drawable/add_btn2"
             android:scaleType="centerCrop"
             android:layout_alignParentTop="true"
-            android:id="@+id/gorsel"
+            android:id="@+id/gorselDestek"
             android:background="#00ffffff"
             android:adjustViewBounds="true"/>
 
@@ -200,7 +164,7 @@
 
     <Button
         android:text="Gönder"
-        android:id="@+id/submitBtn"
+        android:id="@+id/submitBtnDestek"
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_gravity="center"
@@ -210,5 +174,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:background="@drawable/btn"/>
+
 
 </LinearLayout>
